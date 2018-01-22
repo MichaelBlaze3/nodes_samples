@@ -1,0 +1,25 @@
+{
+  "name": "remisarestapi",
+  "version": "1.0.0",
+  "description": "RESTful remisaApi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "RESTful",
+    "API",
+    "remisa"
+  ],
+  "author": "Michael Blas",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.1"
+  }
+}
