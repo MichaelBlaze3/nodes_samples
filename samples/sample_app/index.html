@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>NodeJS Sample</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Send Message</h1>
+            <br>
+            <input type="text" id="name" class="form-control" placeholder="Name">
+            <br>
+            <textarea name="" id="message" class="form-control" cols="30" rows="10"></textarea>
+            <br>
+            <button class="btn btn-success" id="send">Send</button>
+        </div>
+        <div id="messages">
+
+        </div>
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./socket.io/socket.io.js"></script>
+    <script>
+        $( () => {
+            console.log("Loaded");
+            $("#send").click( () => {
+                // addMessages({name: "Tim", message: "Hello"});
+                let localMessage = {name: $("#name").val(), message: $("#message").val()};
+                postMessage(localMessage);                
+            });
+            getMessages();
+        });
+
+        let addMessages = (message) => {
+            $("#messages").append(`<h4>${message.name}</h4> <p>${message.message}</p>`);
+        }
+
+        let getMessages = () => {
+            $.get("http://localhost:3000/message", (data) => {
+                data.forEach(element => {
+                    addMessages(element);
+                });
+            });
+        }
+
+        let postMessage = (message) => {
+            $.post("http://localhost:3000/message", message);
+        }
+    </script>
+</body>
+</html>

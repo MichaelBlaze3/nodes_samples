@@ -14,6 +14,10 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    email: {
+        type: String,
+        required: 'Please, enter a valid email account'
+    },
     status: {
         type: [
             {
